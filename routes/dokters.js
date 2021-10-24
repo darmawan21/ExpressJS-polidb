@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Dokters = require("../models/dokters");
 
-/* Tampil Data Poli. */
+/* Tampil Data Dokter. */
 router.get('/', function(req, res, next) {
   Dokters.findAndCountAll().then(data => {
     res.json({
@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
   });
 });
 
-/* Tambah Data Poli. */
+/* Tambah Data Dokter. */
 router.post('/', function(req, res, next) {
   Dokters.create(req.body).then(data => {
     res.json({
@@ -37,7 +37,7 @@ router.post('/', function(req, res, next) {
   });
 });
 
-/* Ubah Data Poli. */
+/* Ubah Data Dokter. */
 router.put('/', function(req, res, next) {
   Dokters.update(req.body, {
     where : {id:req.body.id}
@@ -56,7 +56,7 @@ router.put('/', function(req, res, next) {
   });
 });
 
-/* Delete Data Poli. */
+/* Delete Data Dokter. */
 router.delete('/', function(req, res, next) {
   Dokters.destroy({
     where : {id:req.body.id}

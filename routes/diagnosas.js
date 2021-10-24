@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Diagnosas = require("../models/diagnosas");
 
-/* Tampil Data Poli. */
+/* Tampil Data Diagnosa. */
 router.get('/', function(req, res, next) {
   Diagnosas.findAndCountAll().then(data => {
     res.json({
@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
   });
 });
 
-/* Tambah Data Poli. */
+/* Tambah Data Diagnosa. */
 router.post('/', function(req, res, next) {
   Diagnosas.create(req.body).then(data => {
     res.json({
@@ -37,7 +37,7 @@ router.post('/', function(req, res, next) {
   });
 });
 
-/* Ubah Data Poli. */
+/* Ubah Data Diagnosa. */
 router.put('/', function(req, res, next) {
   Diagnosas.update(req.body, {
     where : {id:req.body.id}
@@ -56,7 +56,7 @@ router.put('/', function(req, res, next) {
   });
 });
 
-/* Delete Data Poli. */
+/* Delete Data Diagnosa. */
 router.delete('/', function(req, res, next) {
   Diagnosas.destroy({
     where : {id:req.body.id}
