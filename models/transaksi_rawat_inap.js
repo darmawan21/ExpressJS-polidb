@@ -12,7 +12,7 @@ const Transaksi_Rawat_Inap = koneksi.define('Transaksi_Rawat_Inap', {
   }
 }, {
     freezeTableName: true
-}), Pasien = koneksi.define('pasien', {
+}), Pasien = koneksi.define('Pasien', {
     nama: {
         type: DataTypes.STRING,
         allowNull: false
@@ -25,6 +25,8 @@ const Transaksi_Rawat_Inap = koneksi.define('Transaksi_Rawat_Inap', {
         type: DataTypes.STRING,
         allowNull: false
     },
+}, {
+    freezeTableName: true
 });
 
 Transaksi_Rawat_Inap.belongsTo(Pasien, {foreignKey: 'id_pasien'});

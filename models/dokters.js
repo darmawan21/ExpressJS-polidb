@@ -1,5 +1,6 @@
-const { Sequelize, DataTypes } = require('sequelize');
+const { Sequelize, DataTypes, Model } = require('sequelize');
 var koneksi = require("../koneksi.js");
+const Poli = require('./polis.js');
 
 const Dokter = koneksi.define('Dokter', {
   nama: {
@@ -12,13 +13,8 @@ const Dokter = koneksi.define('Dokter', {
   },
 }, {
     freezeTableName: true
-}), Poli = koneksi.define('poli', {
-    nama: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
 });
 
-Dokter.belongsTo(Poli, {foreignKey: 'id_poli'});
+Dokter.belongsTo(Poli, {foreignKey: 'idPoli'});
 
 module.exports = Dokter;

@@ -1,5 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 var koneksi = require("../koneksi.js");
+const Diagnosa = require('./diagnosas.js');
+const Dokter = require('./dokters.js');
 
 const Transaksi_Periksa = koneksi.define('Transaksi_Periksa', {
   biaya: {
@@ -8,33 +10,21 @@ const Transaksi_Periksa = koneksi.define('Transaksi_Periksa', {
   },
 }, {
     freezeTableName: true
-}), Dokter = koneksi.define('dokter', {
-    nama: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    biaya: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-}), Pasien = koneksi.define('pasien', {
-    nama: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    alamat: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    no_telp: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-}), Diagnosa = koneksi.define('diagnosa', {
-    nama: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
+}), Pasien = koneksi.define('Pasien', {
+  nama: {
+      type: DataTypes.STRING,
+      allowNull: false
+  },
+  alamat: {
+      type: DataTypes.STRING,
+      allowNull: false
+  },
+  no_telp: {
+      type: DataTypes.STRING,
+      allowNull: false
+  },
+}, {
+  freezeTableName: true
 });
 
 Transaksi_Periksa.belongsTo(Dokter, {foreignKey: 'id_dokter'});
