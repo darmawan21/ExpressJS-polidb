@@ -10,6 +10,7 @@ var dokterRouter = require('./routes/dokters');
 var diagnosaRouter = require('./routes/diagnosas');
 var tindakanMedisRouter = require('./routes/tindakan_medis');
 var transaksiPeriksaRouter = require('./routes/transaksi_periksa');
+var transaksiPeriksaDetailRouter = require('./routes/transaksi_periksa_detail');
 
 var app = express();
 
@@ -29,6 +30,8 @@ app.use('/dokters', dokterRouter);
 app.use('/diagnosas', diagnosaRouter);
 app.use('/tindakan-medis', tindakanMedisRouter);
 app.use('/transaksi-periksa', transaksiPeriksaRouter);
+app.use('/transaksi-periksa-detail', transaksiPeriksaDetailRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
