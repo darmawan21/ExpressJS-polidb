@@ -3,18 +3,26 @@ var koneksi = require("../koneksi.js");
 const Poli = require('./polis.js');
 
 const Dokter = koneksi.define('Dokter', {
+  id: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  id_poli: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+  },
   nama: {
-    type: DataTypes.STRING,
+    type: Sequelize.STRING,
     allowNull: false
   },
   biaya: {
-    type: DataTypes.INTEGER,
+    type: Sequelize.INTEGER,
     allowNull: false
   },
 }, {
     freezeTableName: true
 });
-
-Dokter.belongsTo(Poli, {foreignKey: 'idPoli'});
 
 module.exports = Dokter;

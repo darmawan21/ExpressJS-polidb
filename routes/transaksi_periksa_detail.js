@@ -4,12 +4,11 @@ var Transaksi_Periksa_Detail = require("../models/transaksi_periksa_detail");
 
 /* Tampil Data Transaksi Periksa Detail. */
 router.get('/', function(req, res, next) {
-  Transaksi_Periksa_Detail.findAndCountAll().then(data => {
+  Transaksi_Periksa_Detail.findAll().then(data => {
     res.json({
       status: true,
       pesan: "Berhasil Tampil",
-      data:data.rows,
-      count: data.count
+      data:data
     });
   }).catch(salahnya=>{
     res.json({
@@ -32,7 +31,7 @@ router.post('/', function(req, res, next) {
     res.json({
       status: false,
       pesan: "Gagal Tambah: " + salahnya.message,
-      data:req.body
+      data:[]
     });
   });
 });
@@ -41,17 +40,17 @@ router.post('/', function(req, res, next) {
 router.put('/', function(req, res, next) {
   Transaksi_Periksa_Detail.update(req.body, {
     where : {id:req.body.id}
-  }).then(data => {
+  }).then(() => {
     res.json({
       status: true,
       pesan: "Berhasil Ubah",
-      data:data
+      data:[]
     });
   }).catch(salahnya=>{
     res.json({
       status: false,
       pesan: "Gagal Ubah: " + salahnya.message,
-      data:req.body
+      data:[]
     });
   });
 });
@@ -60,17 +59,17 @@ router.put('/', function(req, res, next) {
 router.delete('/', function(req, res, next) {
   Transaksi_Periksa_Detail.destroy({
     where : {id:req.body.id}
-  }).then(data => {
+  }).then(() => {
     res.json({
       status: true,
       pesan: "Berhasil Hapus",
-      data:data
+      data:[]
     });
   }).catch(salahnya=>{
     res.json({
       status: false,
       pesan: "Gagal Hapus: " + salahnya.message,
-      data:req.body
+      data:[]
     });
   });
 });

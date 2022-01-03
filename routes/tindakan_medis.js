@@ -4,12 +4,11 @@ var Tindakan_Medis = require("../models/tindakan_medis");
 
 /* Tampil Data Tindakan Medis. */
 router.get('/', function(req, res, next) {
-  Tindakan_Medis.findAndCountAll().then(data => {
+  Tindakan_Medis.findAll().then(data => {
     res.json({
       status: true,
       pesan: "Berhasil Tampil",
-      data:data.rows,
-      count: data.count
+      data:data
     });
   }).catch(salahnya=>{
     res.json({
@@ -32,7 +31,7 @@ router.post('/', function(req, res, next) {
     res.json({
       status: false,
       pesan: "Gagal Tambah: " + salahnya.message,
-      data:req.body
+      data:[]
     });
   });
 });
@@ -41,17 +40,17 @@ router.post('/', function(req, res, next) {
 router.put('/', function(req, res, next) {
   Tindakan_Medis.update(req.body, {
     where : {id:req.body.id}
-  }).then(data => {
+  }).then(() => {
     res.json({
       status: true,
       pesan: "Berhasil Ubah",
-      data:data
+      data:[]
     });
   }).catch(salahnya=>{
     res.json({
       status: false,
       pesan: "Gagal Ubah: " + salahnya.message,
-      data:req.body
+      data:[]
     });
   });
 });
@@ -60,19 +59,45 @@ router.put('/', function(req, res, next) {
 router.delete('/', function(req, res, next) {
   Tindakan_Medis.destroy({
     where : {id:req.body.id}
-  }).then(data => {
+  }).then(() => {
     res.json({
       status: true,
       pesan: "Berhasil Hapus",
-      data:data
+      data:[]
     });
   }).catch(salahnya=>{
     res.json({
       status: false,
       pesan: "Gagal Hapus: " + salahnya.message,
-      data:req.body
+      data:[]
     });
   });
+});
+
+router.get('/options',function(req,res,next){
+	Tindakan_Medis.findAll().then( data=>{
+
+		var options = data.map( (item)=>{
+			return {
+				id:item.id, 
+				value:item.nama+ " - "+item.biaya,
+				data:item
+			};
+		});
+
+		res.json({
+			status:true,
+			pesan:"Berhasil Tampil Options",
+			data: options
+		});
+
+	}).catch( err=>{
+		res.json({
+			status: false,
+			pesan: "Gagal tampil: " + err.message,
+			data:[]
+		});
+	});
 });
 
 module.exports = router;

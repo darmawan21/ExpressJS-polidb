@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var polisRouter = require('./routes/polis');
@@ -34,6 +35,8 @@ app.use('/transaksi-periksa', transaksiPeriksaRouter);
 app.use('/transaksi-periksa-detail', transaksiPeriksaDetailRouter);
 app.use('/transaksi-rawat-inap', transaksiRawatInapRouter);
 
+// untuk mengaktifkan cors
+app.use(cors());
 
 
 // catch 404 and forward to error handler

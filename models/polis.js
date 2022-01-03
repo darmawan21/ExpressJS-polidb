@@ -3,17 +3,25 @@ var koneksi = require("../koneksi.js");
 
 
 const Poli = koneksi.define('Poli', {
+  
+  id: {
+    type:Sequelize.INTEGER,
+    allowNull: false,
+    primaryKey: true,
+    autoIncrement: true
+  },
+
   nama: {
-    type: DataTypes.STRING,
+    type: Sequelize.STRING,
     allowNull: false
   },
-  username: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-}, {
+  }, 
+  {
+    timestamps: true,
     freezeTableName: true
-});
+  }
+
+);
 
 
 module.exports = Poli;

@@ -1,12 +1,19 @@
-const { Sequelize, DataTypes } = require('sequelize');
+const Sequelize= require('sequelize');
 var koneksi = require("../koneksi.js");
 
 const Diagnosa = koneksi.define('Diagnosa', {
+  id: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    primaryKey: true,
+    autoIncrement: true
+  },
   nama: {
-    type: DataTypes.STRING,
+    type: Sequelize.STRING,
     allowNull: false
   },
 }, {
+    timestamps: true,  
     freezeTableName: true
 });
 
